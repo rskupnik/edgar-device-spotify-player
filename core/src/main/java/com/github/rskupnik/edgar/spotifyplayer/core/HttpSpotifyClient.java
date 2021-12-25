@@ -75,4 +75,13 @@ public class HttpSpotifyClient implements SpotifyClient {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void toggleShuffle(boolean value) {
+        try {
+            spotifyApi.toggleShuffleForUsersPlayback(value).build().execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

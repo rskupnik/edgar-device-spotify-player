@@ -8,6 +8,7 @@ public interface SpotifyPlayer {
 
     void startPlayback(String playlistId);
     void stopPlayback();
+    void toggleShuffle(boolean value);
 
     static SpotifyPlayer defaultImplementation() {
         var config = ConfigFactory.load();

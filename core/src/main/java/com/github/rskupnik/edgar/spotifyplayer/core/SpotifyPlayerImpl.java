@@ -24,4 +24,9 @@ public class SpotifyPlayerImpl implements SpotifyPlayer {
     public void stopPlayback() {
         spotifyClient.stopPlayback(deviceId);
     }
+
+    @Override
+    public void toggleShuffle(boolean value) {
+        spotifyClient.toggleShuffle(value);
+    }
 }

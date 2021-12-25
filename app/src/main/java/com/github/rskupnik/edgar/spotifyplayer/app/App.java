@@ -9,6 +9,7 @@ public class App {
     public static void main(String[] args) {
         SpotifyPlayer spotifyPlayer = SpotifyPlayer.defaultImplementation();
         //spotifyPlayer.test3();
-        spotifyPlayer.startPlayback("5BhYw83I5svASNyTjQfQpq");
+        //spotifyPlayer.startPlayback("5BhYw83I5svASNyTjQfQpq");
+        spotifyPlayer.toggleShuffle(true);
     }
 }

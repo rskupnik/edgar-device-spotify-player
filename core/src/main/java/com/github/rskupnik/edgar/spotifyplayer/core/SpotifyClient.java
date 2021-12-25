@@ -6,4 +6,5 @@ public interface SpotifyClient {
 
     void startPlayback(String deviceId, String playlistId);
     void stopPlayback(String deviceId);
+    void toggleShuffle(boolean value);
 }
