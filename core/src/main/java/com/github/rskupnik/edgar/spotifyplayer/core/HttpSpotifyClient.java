@@ -1,7 +1,7 @@
 package com.github.rskupnik.edgar.spotifyplayer.core;
 
 import se.michaelthelin.spotify.SpotifyApi;
-import se.michaelthelin.spotify.model_objects.credentials.AuthorizationCodeCredentials;
+import se.michaelthelin.spotify.model_objects.miscellaneous.Device;
 import se.michaelthelin.spotify.requests.authorization.authorization_code.AuthorizationCodeRefreshRequest;
 
 import java.net.URI;
@@ -40,6 +40,28 @@ public class HttpSpotifyClient implements SpotifyClient {
             System.out.println(playlists.getNext());
             var profile = spotifyApi.getUsersProfile("21avkgioine5h5mcamjvdm4mi").build().execute();
             System.out.println(profile);
+            var devices = spotifyApi.getUsersAvailableDevices().build().execute();
+            for (Device device : devices) {
+                System.out.println(device);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void startPlayback(String deviceId) {
+        try {
+            spotifyApi.startResumeUsersPlayback().device_id(deviceId).build().execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void stopPlayback(String deviceId) {
+        try {
+            spotifyApi.pauseUsersPlayback().device_id(deviceId).build().execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
