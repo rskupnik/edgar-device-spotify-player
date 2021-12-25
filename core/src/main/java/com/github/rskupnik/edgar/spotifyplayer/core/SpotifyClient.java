@@ -4,6 +4,6 @@ public interface SpotifyClient {
 
     void test3();
 
-    void startPlayback(String deviceId);
+    void startPlayback(String deviceId, String playlistId);
     void stopPlayback(String deviceId);
 }

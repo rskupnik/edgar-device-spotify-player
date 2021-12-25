@@ -1,7 +1,9 @@
 package com.github.rskupnik.edgar.spotifyplayer.core;
 
+import org.apache.commons.codec.binary.StringUtils;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.model_objects.miscellaneous.Device;
+import se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
 import se.michaelthelin.spotify.requests.authorization.authorization_code.AuthorizationCodeRefreshRequest;
 
 import java.net.URI;
@@ -36,8 +38,11 @@ public class HttpSpotifyClient implements SpotifyClient {
     @Override
     public void test3() {
         try {
-            var playlists = spotifyApi.getListOfUsersPlaylists("21avkgioine5h5mcamjvdm4mi").build().execute();
-            System.out.println(playlists.getNext());
+            //var playlists = spotifyApi.getListOfUsersPlaylists("21avkgioine5h5mcamjvdm4mi").build().execute();
+            var playlists = spotifyApi.getListOfCurrentUsersPlaylists().build().execute();
+            for (PlaylistSimplified playlist : playlists.getItems()) {
+                System.out.println(playlist);
+            }
             var profile = spotifyApi.getUsersProfile("21avkgioine5h5mcamjvdm4mi").build().execute();
             System.out.println(profile);
             var devices = spotifyApi.getUsersAvailableDevices().build().execute();
@@ -50,9 +55,13 @@ public class HttpSpotifyClient implements SpotifyClient {
     }
 
     @Override
-    public void startPlayback(String deviceId) {
+    public void startPlayback(String deviceId, String playlistId) {
         try {
-            spotifyApi.startResumeUsersPlayback().device_id(deviceId).build().execute();
+            spotifyApi.startResumeUsersPlayback()
+                    .device_id(deviceId)
+                    .context_uri(playlistId == null || playlistId.equals("") ? null : "spotify:playlist:" + playlistId)
+                    .build()
+                    .execute();
         } catch (Exception e) {
             e.printStackTrace();
         }

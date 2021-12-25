@@ -16,8 +16,8 @@ public class SpotifyPlayerImpl implements SpotifyPlayer {
     }
 
     @Override
-    public void startPlayback() {
-        spotifyClient.startPlayback(deviceId);
+    public void startPlayback(String playlistId) {
+        spotifyClient.startPlayback(deviceId, playlistId);
     }
 
     @Override

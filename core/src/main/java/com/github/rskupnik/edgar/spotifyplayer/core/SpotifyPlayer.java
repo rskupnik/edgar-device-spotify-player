@@ -6,7 +6,7 @@ public interface SpotifyPlayer {
 
     void test3();
 
-    void startPlayback();
+    void startPlayback(String playlistId);
     void stopPlayback();
 
     static SpotifyPlayer defaultImplementation() {
