@@ -1,6 +1,7 @@
 package com.github.rskupnik.edgar.spotifyplayer.core;
 
 import com.typesafe.config.ConfigFactory;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 public interface SpotifyPlayer {
 
@@ -19,6 +20,9 @@ public interface SpotifyPlayer {
                     config.getString("spotifyClient.clientSecret"),
                     config.getString("spotifyClient.redirectUri"),
                     config.getString("spotifyClient.refreshToken")
+                ),
+                new HttpEdgarHubClient(
+                        HttpClients.createDefault()
                 )
         );
     }

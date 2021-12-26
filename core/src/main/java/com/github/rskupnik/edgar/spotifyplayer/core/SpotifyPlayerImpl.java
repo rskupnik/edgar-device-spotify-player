@@ -4,10 +4,18 @@ public class SpotifyPlayerImpl implements SpotifyPlayer {
 
     private final String deviceId;
     private final SpotifyClient spotifyClient;
+    private final EdgarHubClient edgarHubClient;
 
-    public SpotifyPlayerImpl(String deviceId, SpotifyClient spotifyClient) {
+    public SpotifyPlayerImpl(String deviceId, SpotifyClient spotifyClient, EdgarHubClient edgarHubClient) {
         this.deviceId = deviceId;
         this.spotifyClient = spotifyClient;
+        this.edgarHubClient = edgarHubClient;
+
+        registerWithHub();
+    }
+
+    private void registerWithHub() {
+        edgarHubClient.register();
     }
 
     @Override
