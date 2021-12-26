@@ -3,13 +3,15 @@
  */
 package com.github.rskupnik.edgar.spotifyplayer.app;
 
-import com.github.rskupnik.edgar.spotifyplayer.core.SpotifyPlayer;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication(scanBasePackages = {
+        "com.github.rskupnik.edgar.spotifyplayer.app",
+        "com.github.rskupnik.edgar.spotifyplayer.web"
+})
 public class App {
     public static void main(String[] args) {
-        SpotifyPlayer spotifyPlayer = SpotifyPlayer.defaultImplementation();
-        //spotifyPlayer.test3();
-        //spotifyPlayer.startPlayback("5BhYw83I5svASNyTjQfQpq");
-        spotifyPlayer.toggleShuffle(true);
+        SpringApplication.run(App.class, args);
     }
 }

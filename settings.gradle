@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'edgar-device-spotify-player'
-include('app', 'core', 'tools')
+include('app', 'core', 'tools', 'web')
